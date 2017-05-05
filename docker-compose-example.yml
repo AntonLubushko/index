@@ -4,24 +4,19 @@ services:
   web:
     build:
         context: ../web
-        dockerfile: Dockerfile.local
     volumes:
       - ../web:/usr/src/app
     environment:
       - PARSE_APP_ID=TestTaskApplTcVXkSPuZpMsSKccGIN0TLlq0hcq
-      - PARSE_SERVER_URL=http://localhost/parse
+      - PARSE_SERVER_URL=://localhost/parse
       - PARSE_SERVER_URL_DOCKER=http://parse-server/parse
 
 
   web-server:
     build:
         context: ../web-server
-        dockerfile: Dockerfile.local
     volumes:
       - ../web-server:/usr/src/app
-#    environment:
-#      - PARSE_APP_ID=TestTaskApplTcVXkSPuZpMsSKccGIN0TLlq0hcq
-#      - PARSE_SERVER_URL=http://localhost:1337/parse
 
   nginx:
     build: ./../nginx
@@ -35,8 +30,6 @@ services:
       - MASTER_KEY=TestTaskAppx7WydSk6nQOTWnlNWKfJRcgB3kpvG
       - DATABASE_URI=mongodb://mongo/parsedev
       - SERVER_URL=http://localhost/parse
-#    ports:
-#      - "1337:1337"
 
   parse-dashboard:
     image: yongjhih/parse-dashboard:1.0.22
@@ -49,7 +42,7 @@ services:
                      "serverURL": "http://localhost/parse",
                      "appId": "TestTaskApplTcVXkSPuZpMsSKccGIN0TLlq0hcq",
                      "masterKey": "TestTaskAppx7WydSk6nQOTWnlNWKfJRcgB3kpvG",
-                     "appName": "Local"
+                     "appName": "ParseServerApp"
                    }
                  ],
                  "users": [
@@ -59,5 +52,3 @@ services:
                    }
                  ]
                }
-#    ports:
-#      - "4040:4040"
