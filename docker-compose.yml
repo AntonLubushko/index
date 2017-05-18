@@ -22,6 +22,9 @@ services:
 
   parse-server:
     image: yongjhih/parse-server
+    environment:
+      - LIVEQUERY_SUPPORT=true
+      - LIVEQUERY_CLASSES=Users
     depends_on:
       - mongo
 
